@@ -1,0 +1,28 @@
+# version: "1"
+# packages:
+#   - name: "postgresdb"
+#     path: "./internal/storage/postgres/sqlc"
+#     queries: "./internal/storage/postgres/query"
+#     schema: "./internal/storage/postgres/migration"
+#     engine: "postgresql"
+#     emit_json_tags: true
+#     emit_prepared_queries: false
+#     emit_interface: false
+#     emit_exact_table_names: false
+#     emit_empty_slices: true
+
+version: "2"
+sql:
+  - engine: "postgresql"
+    schema: "./internal/storage/postgres/migration"
+    queries: "./internal/storage/postgres/query"
+    gen:
+      go:
+        package: "postgresdb"
+        out: "./internal/storage/postgres/sqlc"
+        emit_json_tags: true
+        emit_prepared_queries: false
+        emit_interface: false
+        emit_exact_table_names: false
+        emit_empty_slices: true
+        sql_package: "pgx/v5" # Use pgx/v5 for sql package because I user pgx driver instead of database/sql

@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS follows;
+DROP TABLE IF EXISTS tweet CASCADE;
+DROP TABLE IF EXISTS retweet CASCADE;
+DROP TABLE IF EXISTS comment CASCADE;
+DROP TABLE IF EXISTS like_tweet;
+DROP TABLE IF EXISTS like_comment;
+
+DROP TYPE IF EXISTS tweet_type;
+
+DROP INDEX IF EXISTS idx_user_id;
+DROP INDEX IF EXISTS idx_user_username;
+DROP INDEX IF EXISTS idx_refresh_token_id;
+DROP INDEX IF EXISTS idx_follows_id;
+DROP INDEX IF EXISTS idx_tweet_id;
+DROP INDEX IF EXISTS idx_tweet_created_at;
+DROP INDEX IF EXISTS idx_retweet_id;
+DROP INDEX IF EXISTS idx_retweet_created_at;
+
+DROP FUNCTION IF EXISTS f_update_timestamp CASCADE;
