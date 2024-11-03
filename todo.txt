@@ -1,0 +1,41 @@
+- User timeline with own tweets and retweets
+- Home timeline from people user follows
+
+GET /api/timeline?limit=10&offset=0
+
+POST /api/likes/tweet {"type": "tweet or retweet", "id": "string"}
+DELETE /api/likes/tweet {"type": "tweet or retweet", "id": "string"}
+GET /api/likes/tweet {"type": "tweet or retweet", "id": "string"}
+POST /api/likes/comment/{comment_id}
+DELETE /api/likes/comment/{comment_id}
+GET /api/likes/comment/{comment_id} 
+
+POST /api/comment {"type": "string", "tweet_id": "string", "parent_comment_id": "string", content": "string"}
+GET /api/comment {"type": "string", "id": "string"}
+DELETE /api/comment/{comment_id}
+
+POST /api/users/singup {"username": "string", "email": "string", "password": "string" }
+POST /api/users/login {"username": "string", "email": "string"}
+GET /api/users/{user_id}
+DELETE /api/users/{user_id}
+PUT /api/users/{user_id} {"bio": "string", "username": "string"}
+GET /api/users/{user_id}/followers
+GET /api/users/{user_id}/following
+
+POST /api/tweets/ {"content": "string"}
+GET /api/tweets/{tweet_id}
+DELETE /api/tweets/{tweet_id}
+
+POST /api/retweets/ {"type": "tweet or retweet", "id": "string"}
+GET /api/retweets/{retweet_id}
+DELETE /api/retweets/{retweet_id}
+GET /api/retweets/{tweet_id}
+GET /api/retweets/{retweet_id}
+
+POST /api/follow {"follow_user_id": "string"}
+DELETE /api/follow {"follow_user_id": "string"}
+
+
+
+
+
