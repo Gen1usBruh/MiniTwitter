@@ -23,19 +23,16 @@ func CorsMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-// AuthMiddleware is middleware that checks if JWT token is present
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		tokenString := c.GetHeader("Authorization")
 
-		// Check if the token is present
 		if tokenString == "" {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
 			c.Abort()
 			return
 		}
 
-		// Token is present, proceed with the request
 		c.Next()
 	}
 }

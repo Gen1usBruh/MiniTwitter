@@ -18,7 +18,7 @@ jobs:
           POSTGRES_PASSWORD: aboba2298
           POSTGRES_DB: twitterdb
         ports:
-          - 5433:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -32,7 +32,10 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.20'
-    
+
+    - name: Export env variables
+      run: [ ! -f ../.env ] || export $(grep -v '^#' ../.env | xargs)
+
     - name: Install golang-migrate
       run: |
       wget https://github.com/golang-migrate/migrate/releases/download/v4.18.1/migrate.linux-amd64.tar.gz
@@ -40,7 +43,7 @@ jobs:
       sudo mv ./migrate /usr/bin/migrate
 
     - name: Run migrations
-      run: migrate -path internal/storage/postgres/migration -database "postgresql://amirshox:aboba2298@localhost:5433/twitterdb?sslmode=disable" -verbose up
+      run: migrate -path internal/storage/postgres/migration -database "postgresql://amirshox:aboba2298@localhost:5432/twitterdb?sslmode=disable" -verbose up
 
     - name: Test
       run: go test -v -cover ./...

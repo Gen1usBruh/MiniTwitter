@@ -42,4 +42,11 @@ JOIN users u ON f.following_id = u.id
 WHERE f.follower_id = $1
 ORDER BY f.created_at DESC;
 
+-- name: SelectUserSignIn :one
+SELECT id, username, email, password, bio, created_at, updated_at
+FROM users
+WHERE email = $1
+LIMIT 1;
+
+
 

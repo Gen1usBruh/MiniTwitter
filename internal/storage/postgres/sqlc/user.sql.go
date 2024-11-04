@@ -175,6 +175,28 @@ func (q *Queries) SelectUserFollowing(ctx context.Context, followerID int32) ([]
 	return items, nil
 }
 
+const selectUserSignIn = `-- name: SelectUserSignIn :one
+SELECT id, username, email, password, bio, created_at, updated_at
+FROM users
+WHERE email = $1
+LIMIT 1
+`
+
+func (q *Queries) SelectUserSignIn(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRow(ctx, selectUserSignIn, email)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Email,
+		&i.Password,
+		&i.Bio,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const updateUserBio = `-- name: UpdateUserBio :exec
 UPDATE users 
     set bio = $2 
